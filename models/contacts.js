@@ -7,10 +7,21 @@ const contactsPath = path.join(__dirname, "./contacts.json")
 
 const {Schema, model} = require("mongoose");
 
-const contactSchema = Schema({
-	name: String,
-	email: String,
-	phone: String,
+const contactSchema = Schema(  {
+	name: {
+		type: String,
+		required: [true, 'Set name for contact'],
+	},
+	email: {
+		type: String,
+	},
+	phone: {
+		type: String,
+	},
+	favorite: {
+		type: Boolean,
+		default: false,
+	},
 })
 
 const Contact = model("contact", contactSchema);

@@ -34,6 +34,7 @@ const {contacts: ctrl} = require("../../controllers")
 // const Contact = model("product", contactSchema);
 
 router.get("/", ctrlWrapper(ctrl.listContacts));
+router.post("/", ctrlWrapper(ctrl.addContact));
 
 /*
 router.get("/:contactId", async (req, res, next) => {
