@@ -5,12 +5,21 @@ const path = require("path");
 
 const contactsPath = path.join(__dirname, "./contacts.json")
 
+const {Schema, model} = require("mongoose");
 
-const listContacts = async () => {
-	const data = await fs.readFile(contactsPath, "utf8");
-	return JSON.parse(data);
-}
+const contactSchema = Schema({
+	name: String,
+	email: String,
+	phone: String,
+})
 
+const Contact = model("contact", contactSchema);
+
+// const listContacts = async () => {
+// 	const data = await fs.readFile(contactsPath, "utf8");
+// 	return JSON.parse(data);
+// }
+/*
 const getContactById = async (contactId) => {
 	const contactsList = await listContacts()
 	const contact = contactsList.find(contact => contact.id === contactId)
@@ -54,11 +63,8 @@ const updateContact = async (contactId, body) => {
 	await fs.writeFile(contactsPath, JSON.stringify(contactsList))
 	return contactsList[index];
 }
+*/
 
-module.exports = {
-	listContacts,
-	getContactById,
-	removeContact,
-	addContact,
-	updateContact,
-}
+
+module.exports = Contact;
+

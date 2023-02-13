@@ -1,28 +1,41 @@
 const express = require("express")
-const createError = require("http-errors")
+// const createError = require("http-errors")
 const router = express.Router()
+const {ctrlWrapper} = require("../../middlewares")
+const {contacts: ctrl} = require("../../controllers")
+// const { getContactById, removeContact, addContact, updateContact} = require("../../models/contacts")
+// const Joi = require("joi");
 
-const {listContacts, getContactById, removeContact, addContact, updateContact} = require("../../models/contacts")
-const Joi = require("joi");
+// const {Schema, model} = require("mongoose");
+//
+// const contactSchema = Schema({
+//   name: String,
+//   email: String,
+//   phone: Number,
+// })
+// const contactSchema = Joi.object({
+//   name: Joi.string().required(),
+//   email: Joi.string().email().required(),
+//   phone: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
+// })
+// router.get("/", async (req, res, next) => {
+//   try {
+//     const data = await listContacts();
+//     res.json({
+//       status: "success",
+//       code: 200,
+//       data
+//     })
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
-const contactSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().email().required(),
-  phone: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
-})
-router.get("/", async (req, res, next) => {
-  try {
-    const data = await listContacts();
-    res.json({
-      status: "success",
-      code: 200,
-      data
-    })
-  } catch (err) {
-    next(err)
-  }
-})
+// const Contact = model("product", contactSchema);
 
+router.get("/", ctrlWrapper(ctrl.listContacts));
+
+/*
 router.get("/:contactId", async (req, res, next) => {
   try {
     const {contactId} = req.params;
@@ -98,5 +111,7 @@ router.put('/:contactId', async (req, res, next) => {
     next(err)
   }
 })
+
+ */
 
 module.exports = router
