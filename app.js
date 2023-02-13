@@ -1,10 +1,17 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
+const mongoose = require('mongoose');
+// ftVRKKC8886mD18m
+const DB_HOST = 'mongodb+srv://admin:ftVRKKC8886mD18m@contacts.a2nwyrl.mongodb.net/node?retryWrites=true&w=majority'
+mongoose.connect(DB_HOST)
+    .then(()=> console.log('Data Base Connect'))
+    .catch(err => {
+      console.log(err.message)
+      process.exit(1)
+    })
 
 const contactsRouter = require('./routes/api/contacts');
-
-// ftVRKKC8886mD18m
 
 const app = express();
 
