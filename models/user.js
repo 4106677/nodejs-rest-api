@@ -29,9 +29,9 @@ const userSchema = Schema(
   }
 );
 
-// userSchema.methods.setPasswords = function (password) {
-//   this.password = bcryptjs.hashSync(password, bcryptjs.genSaltSync(10));
-// };
+userSchema.methods.comparePassword = function (password) {
+  return bcryptjs.compareSync(password, this.password);
+};
 
 const joiRegisterSchema = Joi.object({
   password: Joi.string().required(),

@@ -5,5 +5,6 @@ const { auth: ctrl } = require('../../controllers');
 const { joiRegisterSchema, joiLoginSchema } = require('../../models/user');
 
 router.post('/signup', validation(joiRegisterSchema), ctrlWrapper(ctrl.auth));
+router.post('/login', validation(joiLoginSchema), ctrlWrapper(ctrl.login));
 
 module.exports = router;
