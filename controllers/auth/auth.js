@@ -11,10 +11,6 @@ const auth = async (req, res) => {
   }
 
   const hashPassword = bcryptjs.hashSync(password, bcryptjs.genSaltSync(10));
-  //   const newUser = new User({ email, password });
-  //   newUser.setPassword(password);
-  //   newUser.save();
-
   const data = await User.create({ email, password: hashPassword });
 
   res.status(201).json({
@@ -27,4 +23,16 @@ const auth = async (req, res) => {
   });
 };
 
-module.exports = auth;
+const getCurrent = async (req, res) => {
+  const { email, subscription } = req.user;
+  res.json({
+    status: 'success',
+    code: 200,
+    data: {
+      email,
+      subscription,
+    },
+  });
+};
+
+module.exports = { auth, getCurrent };
