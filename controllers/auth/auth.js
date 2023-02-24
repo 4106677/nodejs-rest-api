@@ -11,8 +11,12 @@ const auth = async (req, res) => {
     throw new Conflict('Email in use');
   }
 
+  const avatarURL = gravatar.url(email);
+
   const hashPassword = bcryptjs.hashSync(password, bcryptjs.genSaltSync(10));
-  const data = await User.create({ email, password: hashPassword });
+  const data = await User.create({ email, password: hashPassword, avatarURL });
+
+  console.log(avatarURL)
 
   res.status(201).json({
     status: 'success',
@@ -20,6 +24,7 @@ const auth = async (req, res) => {
     data: {
       email: data.email,
       password: data.password,
+      avatarURL: data.avatarURL,
     },
   });
 };
