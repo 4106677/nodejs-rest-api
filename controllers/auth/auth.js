@@ -1,6 +1,7 @@
 const { Conflict } = require('http-errors');
 const { User } = require('../../models');
 const bcryptjs = require('bcryptjs');
+const gravatar = require('gravatar');
 
 const auth = async (req, res) => {
   const { email, password } = req.body;
