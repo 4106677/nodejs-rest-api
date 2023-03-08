@@ -27,7 +27,8 @@ const updateAvatar = async (req, res) => {
     res.json({ avatarURL });
   } catch (err) {
     await fs.unlink(tempUpload);
-    throw err;
+    throw err
+
   }
 };
 
