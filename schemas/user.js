@@ -12,7 +12,12 @@ const joiLoginSchema = Joi.object({
   email: Joi.string().email().required(),
 });
 
+const joiEmailSchema = Joi.object({
+  email: Joi.string().email().required(),
+});
+
 module.exports = {
   joiRegisterSchema,
   joiLoginSchema,
+  joiEmailSchema,
 };
