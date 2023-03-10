@@ -1,4 +1,4 @@
-const { joiRegisterSchema, joiLoginSchema } = require('./user');
+const { joiRegisterSchema, joiLoginSchema, joiEmailSchema } = require('./user');
 const { joiAddContactSchema, favoriteJoiSchema } = require('./constacts');
 
 module.exports = {
@@ -6,4 +6,5 @@ module.exports = {
   joiRegisterSchema,
   joiAddContactSchema,
   favoriteJoiSchema,
+  joiEmailSchema,
 };
